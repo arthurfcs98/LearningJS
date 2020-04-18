@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+
+            <meta charset="utf-8">
+            <title >Change color</title>
+            <meta name="viewport" content="width=device-width, inital-scale=1.0">
+
+        </head>
+
+        <body id ="body" style="background-color: blueviolet; text-align: center; margin-top: 25%; ">
+            <button onclick="Changecolor()">CLICK HERE TO CHANGE THE BACKGROUND COLOR</button>
+            <p id="demo"></p>
+            <script>
+                function Changecolor() {
+                    const colors  = ["blue","red","white","green", "black", "yellow", "pink", "grey", "orange", 'brown','violet']
+                    bkcolor = colors[Math.floor(Math.random() * 11)]
+                    document.body.style.backgroundColor = bkcolor
+                }
+            </script>
+        </body>
+    </html>
