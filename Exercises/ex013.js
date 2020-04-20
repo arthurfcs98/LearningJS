@@ -1,4 +1,4 @@
-/*Crie um programa que exibe se um dia é dia útil, fim de semana ou dia inválido dado o número referente a o dia. Considere que domingo é o dia 1 e sábado é o dia 7. Utilize a estrutura Switch.*/
+/*Crie um programa que exibe se um dia é dia útil, fim de semana ou dia inválido dado o número referente a o dia. Considere que segunda é o dia 1 e domingo é o dia 7. Utilize a estrutura Switch.*/
 
 const whatday = (day) => {
     if (day > 31) console.log("DATA INVALIDA")
