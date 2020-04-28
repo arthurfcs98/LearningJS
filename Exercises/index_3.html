@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exemplos3</title>
+    <style>
+        .cor {
+            color: red;
+        }
+
+        .dispNone {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <label for="inputLogin">Login:</label>
+        </div>
+        <div>
+            <input id="inputLogin" type="text">
+        </div>
+    </div>
+    <div>
+        <div>
+            <label for="inputSenha">Senha:</label>
+        </div>
+        <div>
+            <input id="inputSenha" type="password">
+        </div>
+    </div>
+    <div>
+        <div>
+            <label for="inputConfirmarSenha">Confirmar Senha:</label>
+        </div>
+        <div>
+            <input id="inputConfirmarSenha" type="password">
+        </div>
+    </div>
+    <p>
+        <button id="btnAcessar">Criar Conta:</button>
+    </p>
+    <p id="resultado" class="dispNone"></p>
+    <script>
+        //Crie os seguintes eventos:
+        // a) Quando o usuario clicar (evento click) no botão criar conta
+        // confira se o login foi preenchido com no minimo 5 caracteres (input.value.length >= 5)
+        // e se os campos senha e confirmar senha são iguais.
+        // Se tudo estiver certo, exiba o <p> que possui id=resultado, 
+        // nele mostre "conta criada com sucesso" com cor padrão.
+        // Caso não esteja correto, informe "login precisa conter no minimo 5 caracteres" 
+        // e/ou "senhas não são iguais" com cor vermelha.
+        // b) Crie um evento para os 3 inputs que esconde a tag <p> resultado caso ela esteja visivel
+        // toda vez que for pressionada uma tecla (evento keydown)
+        // c) crie um evento que ocorre ao perder foco (blur) apenas para o input login que:
+        // se o login possuir menos de 5 caracteres, informará no <p>
+        // a mensagem "login precisa conter no minimo 5 caracteres".
+
+        let btnCriarconta = document.querySelector("button")
+        let paragrafoAviso = document.querySelector("#resultado")
+        let inputLogin = document.querySelector("#inputLogin")
+        let inputSenha = document.querySelector("#inputSenha")
+        let inputConfirmarSenha = document.querySelector("#inputConfirmarSenha")
+
+        btnCriarconta.addEventListener('click', criarConta)
+
+        inputLogin.addEventListener("keydown", removerP)
+        inputSenha.addEventListener("keydown", removerP)
+        inputConfirmarSenha.addEventListener("keydown", removerP)
+        
+        inputLogin.addEventListener("blur", conferirLogin)
+
+
+        function removerP() {
+            paragrafoAviso.classList.add("dispNone")
+        }
+
+        function conferindologin() {
+            return inputLogin.value.length >= 5 
+        }
+    
+        function conferindoSenha() {
+            return inputSenha.value === inputConfirmarSenha.value
+            }
+        
+        function veficarErro(login,senha) {
+            if (login && senha){
+                paragrafoAviso.textContent = 'Conta criada com sucesso'
+                paragrafoAviso.classList.remove("cor")
+            } else{
+                if (!login){
+                    paragrafoAviso.textContent = 'Login precisa de no minimo 5 caracteres. '
+                }
+                if(!senha){
+                    paragrafoAviso.textContent += 'Senhas não são iguais.'
+                }
+                paragrafoAviso.classList.add("cor")
+            }
+            paragrafoAviso.classList.remove("dispNone")
+        }
+
+        function criarConta() {
+            let faltaLogin = conferindologin()
+            let diferenteSenha = conferindoSenha()
+            paragrafoAviso.textContent = ''
+            veficarErro(faltaLogin,diferenteSenha)          
+            }
+        
+            function conferirLogin() {
+
+                if (inputLogin.value.length <5){
+                    paragrafoAviso.textContent = "Login precisa conter no minimo 5 caraceres. "
+                    paragrafoAviso.classList.add("cor")
+                    paragrafoAviso.classList.remove("dispNone")
+                }
+            }
+
+
+
+    </script>
+</body>
+</html>
